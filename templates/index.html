@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+{#导入自定义过滤器my_tag.py  能定位到这个文件吗？#}
+{% load my_tag %}
+<head>
+    <meta charset="UTF-8">
+    <title>neone个人博客</title>
+    <link rel="stylesheet" href="/static/my/css/index.css">
+    <link rel="stylesheet" href="/static/my/css/reset.css">
+    <link rel="stylesheet" href="/static/fontawesome/css/font-awesome.min.css">
+    <script src="/static/vue/vue.js"></script>
+
+</head>
+<body>
+<div id="app">
+    <link rel="stylesheet" :href="'/static/my/css/theme/' + theme + '.css'">
+    <nav>
+        <div class="left">
+            <a href="/">首页</a>
+            <a href="/news">新闻</a>
+            <a href="#">心情</a>
+            <a href="#">回忆录</a>
+            <a href="#">关于</a>
+            <a href="#">网站导航</a>
+        </div>
+        <div class="right">
+            <img v-show="theme === 'light'" src="/static/my/img/nav/light.svg" @click="setTheme('dark')" alt="">
+            <img v-show="theme === 'dark'" src="/static/my/img/nav/dark.svg" @click="setTheme('light')" alt="">
+            <a href="/login">登录</a>
+            <a href="/sign">注册</a>
+        </div>
+    </nav>
+{#    为什么传的是index，因为有index这个变量在底部js中。#}
+    {% banner 'index' %}
+
+    <main>
+        {% block main%}
+            <div class="main">
+                <div class="left">
+                    <div class="boutique_article card">
+                        <div class="title">
+                            <h2>精选文章</h2>
+                            <div class="switch_article_category">
+                                <span :active="this_category === 'qianduan'" @click="switch_article_category('qianduan')">前端</span>
+                                <span :active="this_category === 'houduan'" @click="switch_article_category('houduan')">后端</span>
+                            </div>
+                        </div>
+                        <div class="body">
+                            <ul v-show="this_category === 'qianduan'" class="qianduan">
+                                <li>
+                                    <div class="left">
+                                        <div>
+                                            <img src="http://192.168.42.13:8000/media/site_bg/18.jpg" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="right">
+                                        <h2>React使用</h2>
+                                        <p>安装react包 python npm i 安装react包 python npm i</p>
+                                        <span>2天前</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="left">
+                                        <div>
+                                            <img src="http://192.168.42.13:8000/media/site_bg/18.jpg" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="right">
+                                        <h2>React使用</h2>
+                                        <p>安装react包 python npm i 安装react包 python npm i</p>
+                                        <span>2天前</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="left">
+                                        <div>
+                                            <img src="http://192.168.42.13:8000/media/site_bg/17.jpg" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="right">
+                                        <h2>React使用</h2>
+                                        <p>安装react包 python npm i 安装react包 python npm i</p>
+                                        <span>2天前</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="left">
+                                        <div>
+                                            <img src="http://192.168.42.13:8000/media/site_bg/17.jpg" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="right">
+                                        <h2>React使用</h2>
+                                        <p>安装react包 python npm i 安装react包 python npm i</p>
+                                        <span>2天前</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="left">
+                                        <div>
+                                            <img src="http://192.168.42.13:8000/media/site_bg/17.jpg" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="right">
+                                        <h2>React使用</h2>
+                                        <p>安装react包 python npm i 安装react包 python npm i</p>
+                                        <span>2天前</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="left">
+                                        <div>
+                                            <img src="http://192.168.42.13:8000/media/site_bg/17.jpg" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="right">
+                                        <h2>React使用</h2>
+                                        <p>安装react包 python npm i 安装react包 python npm i</p>
+                                        <span>2天前</span>
+                                    </div>
+                                </li>
+                            </ul>
+                            <ul v-show="this_category === 'houduan'" class="hou">
+                                <li>
+                                    <div class="left">
+                                        <div>
+                                            <img src="http://192.168.42.13:8000/media/site_bg/12.jpg" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="right">
+                                        <h2>后端文章</h2>
+                                        <p>安装react包 python npm i 安装react包 python npm i</p>
+                                        <span>2天前</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="left">
+                                        <div>
+                                            <img src="http://192.168.42.13:8000/media/site_bg/12.jpg" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="right">
+                                        <h2>React使用</h2>
+                                        <p>安装react包 python npm i 安装react包 python npm i</p>
+                                        <span>2天前</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="left">
+                                        <div>
+                                            <img src="http://192.168.42.13:8000/media/site_bg/12.jpg" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="right">
+                                        <h2>React使用</h2>
+                                        <p>安装react包 python npm i 安装react包 python npm i</p>
+                                        <span>2天前</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="left">
+                                        <div>
+                                            <img src="http://192.168.42.13:8000/media/site_bg/12.jpg" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="right">
+                                        <h2>React使用</h2>
+                                        <p>安装react包 python npm i 安装react包 python npm i</p>
+                                        <span>2天前</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="left">
+                                        <div>
+                                            <img src="http://192.168.42.13:8000/media/site_bg/12.jpg" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="right">
+                                        <h2>React使用</h2>
+                                        <p>安装react包 python npm i 安装react包 python npm i</p>
+                                        <span>2天前</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="left">
+                                        <div>
+                                            <img src="http://192.168.42.13:8000/media/site_bg/12.jpg" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="right">
+                                        <h2>React使用</h2>
+                                        <p>安装react包 python npm i 安装react包 python npm i</p>
+                                        <span>2天前</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="hotList card">
+                        <div class="title">
+                            <h2>今日热搜</h2>
+                            <div>
+                                <a href="#">查看更多</a>
+                            </div>
+                        </div>
+                        <div class="body">
+                            主要内容区域
+                        </div>
+                    </div>
+                    <div class="all_article card">
+                        <div class="title">
+                            <h2>博客文章</h2>
+                        </div>
+                        <div class="body">
+                            <ul>
+                                <li>
+                                    <div class="left">
+                                        <div>
+                                            <img src="http://192.168.42.13:8000/media/site_bg/15.jpg" alt="">
+                                        </div>
+
+                                    </div>
+                                    <div class="right">
+                                        <h2><a href="">React基本使用</a></h2>
+                                        <p>安装react包
+                                            ```html
+                                            htmlhtmlhtml
+                                            htmlreact基本使用react基本使用react基本使用
+                                            react基本使用
+                                            react基本使用react基本使用
+                                            react基本使用
+                                            react基本使用</p>
+                                        <div class="article_info">
+                                            <span>
+                                                <i class="fa fa-clock-o"></i>2022-5-4
+                                            </span>
+                                            <span>
+                                                <i class="fa fa-thumbs-up"></i>666
+                                            </span>
+                                            <span>
+                                                <i class="fa fa-eye"></i>666
+                                            </span>
+                                            <span>
+                                                <i class="fa fa-comment"></i>666
+                                            </span>
+                                            <span>
+                                                <i class="fa fa-star-half-full"></i>666
+                                            </span>
+                                        </div>
+                                        <a href="">查看详情</a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="left">
+                                        <div>
+                                            <img src="http://192.168.42.13:8000/media/site_bg/15.jpg" alt="">
+                                        </div>
+
+                                    </div>
+                                    <div class="right">
+                                        <h2><a href="">React基本使用</a></h2>
+                                        <p>安装react包
+                                            ```html
+                                            htmlhtmlhtml
+                                            htmlreact基本使用react基本使用react基本使用
+                                            react基本使用
+                                            react基本使用react基本使用
+                                            react基本使用
+                                            react基本使用</p>
+                                        <div class="article_info">
+                                            <span>
+                                                <i class="fa fa-clock-o"></i>2022-5-4
+                                            </span>
+                                            <span>
+                                                <i class="fa fa-thumbs-up"></i>666
+                                            </span>
+                                            <span>
+                                                <i class="fa fa-eye"></i>666
+                                            </span>
+                                            <span>
+                                                <i class="fa fa-comment"></i>666
+                                            </span>
+                                            <span>
+                                                <i class="fa fa-star-half-full"></i>666
+                                            </span>
+                                        </div>
+                                        <a href="">查看详情</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="right">
+                    <div class="advertisement card">
+                        <div class="title">
+                            <h2>独家广告</h2>
+                            <div>
+                                <a href="#">申请</a>
+                            </div>
+                        </div>
+                        <div class="body">
+                            主要内容区域
+                        </div>
+                    </div>
+                    <div class="tags card">
+                        <div class="title">
+                            <h2>标签云</h2>
+                        </div>
+                        <div class="body">
+                            <ul>
+                                <li>python</li>
+                                <li>Vue</li>
+                                <li>javascript</li>
+                                <li>Django</li>
+                                <li>Node</li>
+                                <li>项目部署</li>
+                                <li>css</li>
+                                <li>DRF</li>
+                                <li>多对多</li>
+                                <li>一对多</li>
+                                <li>分页器</li>
+                                <li>react</li>
+                                <li>ORM</li>
+                                <li>Mysql</li>
+                                <li>redis</li>
+                            </ul>
+
+                        </div>
+                    </div>
+                    <div class="site_info card">
+                        <div class="title">
+                            <h2>站点信息</h2>
+                        </div>
+                        <div class="body">
+                            主要内容区域
+                        </div>
+                    </div>
+                    <div class="feedback card">
+                        <div class="title">
+                            <h2>意见反馈</h2>
+                        </div>
+                        <div class="body">
+                            主要内容区域
+                        </div>
+                    </div>
+                    <div class="links card">
+                        <div class="title">
+                            <h2>友情链接</h2>
+                        </div>
+                        <div class="body">
+                            主要内容区域
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endblock %}
+    </main>
+    <footer>
+        <div class="left">
+            <p class="thank">Thank For</p>
+            <p class="site_info">
+                <span><img src="/static/my/img/footer/tencent.png" alt="">腾讯云服务器</span>
+                <span><img src="/static/my/img/footer/tencent.png" alt="">腾讯云ssl证书</span>
+                <span><img src="/static/my/img/footer/qiniu.png" alt="">七牛云存储</span>
+            </p>
+            <p class="version">
+                <span>version</span>
+                <span>1.0.0</span>
+            </p>
+            <p>建站日期：2022-2-9</p>
+            <p class="beian">
+                <a href="https:/beian.miit.gov.cn"><img src="/static/my/img/footer/badges.png" alt="">备案号</a>
+            </p>
+        </div>
+        <div class="right">
+            <div class="contact">
+                 <div>
+                     <img class="svg" src="/static/my/img/footer/qq_icon.svg" alt="">
+                     <img class="qq" src="/static/my/img/footer/qq.png" alt="">
+                 </div>
+                 <div>
+                     <img class="svg" src="/static/my/img/footer/wexin_icon.svg" alt="">
+                     <img class="wx" src="/static/my/img/footer/wechat.png" alt="">
+                 </div>
+                 <div>
+                                                           {#    target="blank"是指在新页面打开链接 #}
+                     <a href="https://space.bilibili.com/334937533" target="blank">
+                         <img class="svg" src="/static/my/img/footer/bilibili_icon.svg" alt="">
+                     </a>
+                 </div>
+                 <div>
+                     <a href="https://gitee.com/he-linfeng1" target="blank">
+                         <img class="svg" src="/static/my/img/footer/gitee_icon.svg" alt="">
+                     </a>
+                 </div>
+                 <div>
+                     <a href="https://github.com/he-xiansen?tab=repositories" target="blank">
+                         <img class="svg" src="/static/my/img/footer/github_icon.svg" alt="">
+                     </a>
+                 </div>
+                 <div>
+                     <a href="https://www.yuque.com/baiyeduzihang" target="blank">
+                         <img class="svg" src="/static/my/img/footer/yuque_icon.svg" alt="">
+                     </a>
+                 </div>
+            </div>
+            <p>
+                联系邮箱：2440363800@qq.com
+            </p>
+        </div>
+    </footer>
+</div>
+
+<script>
+
+    new Vue({
+        el:'#app',
+        delimiters: ["[[","]]"],
+        data:{
+            theme:'light',  //默认的主题
+            this_category:'qianduan', //给一个初始所在位置
+        },
+        created(){
+            this.init_theme()
+        },
+        methods:{
+            //初始化主题
+            init_theme(){
+                //读取存储的主题信息
+                let theme = localStorage.getItem('theme');
+                if(theme){
+                    this.theme = theme
+                }
+            },
+
+            //设置主题  @click 会调用到这个方法，并将主题持久化存到本地存储中。
+            setTheme(themeName){
+                this.theme = themeName;
+                //持久化存储
+                localStorage.setItem('theme',themeName)
+            },
+
+            //选择分类，设置切换效果
+            switch_article_category(categoryName){
+                this.this_category = categoryName
+            }
+        }
+    })
+
+    //获取需要轮播的div
+    let menu_img = document.querySelectorAll('.dynamic_shuffl')
+    //获取长度(从零开始)  可用menu_img[index]获得某一个图片
+    let menu_length = menu_img.length
+    //设置初始位置
+    let index = 0
+    //定时器，6秒轮播一次（通过控制透明度）
+    let timer = null;
+    clearInterval(timer)     //清空计时器
+    timer = setInterval(() => {    //设置计时器
+        index++
+        if (index === menu_length){
+            index = 0
+        }
+        //样式复原操作(所有图片改为透明)
+        for (let i of menu_img){
+            i.style.opacity = 0   //0是透明
+        }
+        menu_img[index].style.opacity = 1   //index那张设置为不透明
+    },6000)     //6000毫秒，即6秒。
+</script>
+</body>
+</html>

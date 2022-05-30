@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block title %}
+        <title>neone个人博客|用户登录</title>
+    {% endblock %}
+
+{#    清除默认样式#}
+    <link rel="stylesheet" href="/static/my/css/reset.css">
+{#    使用新创建的login。scss样式。#}
+    <link rel="stylesheet" href="/static/my/css/login.css">
+</head>
+<body>
+<div id="app">
+    <main>
+        <div class="top">
+            <div class="title">
+                {% block main_title %}
+                    <a href="/login" class="active">登录</a> / <a href="/sign">注册</a>
+                {% endblock %}
+
+            </div>
+            <div class="login_forms">
+                {% csrf_token %}
+                {% block form %}
+                    <input type="text" v-model="login_form.name" placeholder="请输入用户名">
+                    <input type="text" v-model="login_form.pad" placeholder="请输入密码">
+                    <div class="code">
+                        <input type="text" v-model="login_form.code" placeholder="请输入验证码">
+                        <img src="/static/my/img/login/code.png" alt="">
+                    </div>
+                    <button @click="login">登录</button>
+{#                    这里一个点击将调用login视图   #}
+                {% endblock %}
+
+            </div>
+            <div class="other_login">
+                <p>其他登录方式</p>
+                <div>
+                    <img src="/static/my/img/footer/qq_icon.svg" alt="">
+                    <img src="/static/my/img/footer/wexin_icon.svg" alt="">
+                    <img src="/static/my/img/footer/weibo_icon.svg" alt="">
+                </div>
+            </div>
+
+        </div>
+        <div class="bottom">
+            <img src="/static/my/img/login/working_from_anywhere.svg" alt="">
+        </div>
+    </main>
+</div>
+
+{#<script src="/static/jquery/jquery.min.js"></script>#}
+{#<script type="text/javascript" src="https://cdn.bootcss.com/qs/6.7.0/qs.min.js"></script>#}
+<script src="/static/axios/axios.min.js"></script>
+<script src="/static/vue/vue.js"></script>
+
+<script>
+    //请求中间件
+    axios.interceptors.request.use(
+        request => {
+            if (request.method === 'post'){
+                let csrftoken = document.querySelector('input[name="csrfmiddlewaretoken"]').value
+                request.headers['X-CSRFToken'] = csrftoken
+            }
+            return request     //这里如果不return返回，下面的methods中是接受不到的。
+        },
+    )
+
+    //响应中间件
+    axios.interceptors.response.use(
+        response => {
+
+            return response.data    //这里如果不return返回，下面的methods中是接受不到的。
+        },
+    )
+
+    {#注意Vue第一个字母大写#}
+    new Vue({
+        el:'#app',   //即针对<div id="app">
+        //给后端发数据
+        data:{
+            login_form:{
+                name:'',
+                pad:'',
+                code:'',
+            }
+        },
+        //methods中写入给后端的请求
+        methods:{
+            login(){
+
+                axios.post('/login/',this.login_form).then(res=>{
+                    console.log(res)
+                })
+            }
+        }
+    })
+</script>
+</body>
+</html>

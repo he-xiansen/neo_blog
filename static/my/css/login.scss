@@ -1,0 +1,140 @@
+body{
+  width: 100%;   //宽100%
+  height: 100vh; //高距视图100%
+  #app{
+    width: 100%;
+    height: 100%;
+    //background-color: #ff9800;
+    display: flex;      //让这部分内容居中显示
+    justify-content: center;   //横轴居中排列
+    align-items: center;       //当前行的侧轴（纵轴）方向上的对齐方式：居中
+
+  }
+}
+main{
+  width: 400px;
+  min-height: 600px;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);  // 0 0相对自己位移为0 10px发散程度 rgba(0,0,0,0.2) 黑色，透明度0.2
+  border-radius: 5px;
+  position: relative;  //相对定位
+  display: flex;
+  flex-direction: column;  //最终界面上下排布
+  .bottom{
+    img{
+      position: absolute;  //图片给一个绝对定位
+      bottom: 0;    //通过和main的相对绝对定位，达到置底效果
+      left: 50%;
+      transform: translateX(-50%);  //通过先右移50%，再左移达到居中的目的
+      height: 130px;   //小人图片
+    }
+  }
+  .top{
+    padding: 40px 20px 20px 20px;      //因为表单贴着main边框，所以给一个padding，看着舒服一点
+    //h2{
+    //  color: #ff9800;   //登录按钮改为主题色
+    //  display: flex;
+    //  justify-content: center;     //横轴剧中排列
+    //}
+    .title{
+      text-align: center;  //让登陆注册剧中排列
+      a{
+        color: #808595;  //给登陆注册一个默认的主题色
+      }
+      a.active{
+        color: #ff9800;  //有active类的变为主题色（即点击登录，登录变色；点击注册，注册变色）
+      }
+    }
+
+    .login_forms{
+      display: flex;           //灵活布局
+      flex-direction: column;  //让top部分竖向排列
+      margin-top: 20px;
+      margin-bottom: 20px;
+
+      //>input{     //这里不能用子选择器>，
+      input{         //而是应该用后代选择器，保证后面的input都有效果
+        margin-bottom: 20px;
+        border: 1px solid #f0eeee;  //边界置为1px实线，且颜色为灰色
+        outline: none;  //轮廓线置为none,显得更高级。
+        height: 40px;
+        border-radius: 5px;  //
+        padding-left: 20px;   //保证用户名，密码输入时和框左边有一点间隔。
+        transition: all 0.3s;  //0.3s过渡动画
+        &:focus{
+          border: 1px solid #ff9800;  //当触发输入框时，颜色变为主题色。
+        }
+      }
+      input.sign_input{
+        margin-bottom: 15px;
+      }
+
+      .code{
+        display: flex;
+        width: 100%;
+        justify-content: space-between;  //两端对齐
+        input{
+          width: 40%;
+        }
+        img{
+          height: 35px;        //调整图标高度
+          border-radius: 5px;  //圆角
+          cursor: pointer;     //手指
+        }
+      }
+      >button{
+        border: none;
+        cursor: pointer;  //添加手指按钮
+        height: 40px;
+        color: white;   //文字白色
+        background-color: #ff9800;  //背景主题色
+        border-radius: 5px;
+      }
+    }
+    .other_login{
+      display: flex;
+      flex-direction: column;     //垂直显示
+      align-items: center;        //居中排列
+
+      position: relative;         //相对定位
+      >p{                         //设置字体大小 颜色
+        font-size: 14px;
+        color: #808595;
+
+      }
+
+      &::before {
+        position: absolute;
+        content: '';
+        display: block;
+        width: 125px;
+        height: 1px;
+        background-color: #808595;
+        left: 0;
+        top: 10px;
+      }
+      &::after{
+        position: absolute;
+        content: '';
+        display: block;
+        width: 125px;
+        height: 1px;
+        background-color: #808595;
+        right: 0;
+        top: 10px;
+      }
+      >div{
+        margin-top: 20px;
+        img{
+          width: 30px;  //插入qq，微信，微博图片设置大小
+          margin-right: 10px;   //图片间隔调大
+          //z-index: 3;
+          &:last-child{
+            margin-right: 0;
+          }
+        }
+
+      }
+    }
+  }
+}
