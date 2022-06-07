@@ -5,6 +5,8 @@
     {% block title %}
         <title>neone个人博客|用户登录</title>
     {% endblock %}
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
 
 {#    清除默认样式#}
     <link rel="stylesheet" href="/static/my/css/reset.css">
@@ -24,13 +26,13 @@
             <div class="login_forms">
                 {% csrf_token %}
                 {% block form %}
-                    <input type="text" v-model="login_form.name" placeholder="请输入用户名">
-                    <input type="text" v-model="login_form.pad" placeholder="请输入密码">
+                    <input type="text" ref="login_form_name" v-model="login_form.name" placeholder="请输入用户名">
+                    <input type="text" ref="login_form_pwd" v-model="login_form.pwd" placeholder="请输入密码">
                     <div class="code">
-                        <input type="text" v-model="login_form.code" placeholder="请输入验证码">
-                        <img src="/static/my/img/login/code.png" alt="">
+                        <input type="text" ref="login_form_code" v-model="login_form.code" placeholder="请输入验证码">
+                        <img src="/login/random_code/" alt="">
                     </div>
-                    <button @click="login">登录</button>
+                    <button @click="/login">登录</button>
 {#                    这里一个点击将调用login视图   #}
                 {% endblock %}
 
@@ -56,6 +58,9 @@
 <script src="/static/axios/axios.min.js"></script>
 <script src="/static/vue/vue.js"></script>
 
+{#elementui#}
+<!-- 引入组件库 -->
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
 <script>
     //请求中间件
     axios.interceptors.request.use(
@@ -83,16 +88,23 @@
         data:{
             login_form:{
                 name:'',
-                pad:'',
+                pwd:'',
                 code:'',
             }
         },
         //methods中写入给后端的请求
         methods:{
             login(){
-
                 axios.post('/login/',this.login_form).then(res=>{
-                    console.log(res)
+                    {#console.log(res)#}
+                    if (res.code){
+                        //能执行if，说明非0，即验证失败
+                        this.$message.error(res.msg)
+                        {#直接添加拼接聚焦到错误的框#}
+                        this.$refs['login_form_'${res.self}].focus()
+                        return
+                    }
+                    this.$message.success(res.msg)
                 })
             }
         }

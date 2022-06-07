@@ -27,5 +27,6 @@ urlpatterns = [
     re_path(r'media/(?P<path>.*)$',serve,{'document_root':settings.MEDIA_ROOT}),
     path('news/',views.news),      #新闻
     path('login/',views.login),    #登录视图
+    path('login/random_code/',views.get_random_code), # 生成验证码视图
     path('sign/',views.sign),   #注册视图
 ]
