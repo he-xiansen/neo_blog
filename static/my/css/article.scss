@@ -1,0 +1,104 @@
+.article{
+  width: 100%;
+  .article_title{
+    display: flex;
+    flex-direction: column;  //纵向布局
+    align-items: center;   //居中
+    background-color: white;
+
+    h2{
+      margin: 10px 0;
+
+    }
+    p{
+      font-size: 14px;
+      color: #333333;
+      span{
+        margin-right: 10px;
+        &:last-child{
+          margin-right: 0;
+        }
+      }
+    }
+    >div{
+      margin: 10px 0;
+      i{
+        font-size: 14px;
+        margin-right: 5px;
+        color: #ff9800;
+      }
+    }
+  }
+
+  .article_content{
+    margin-top: 1px;
+    min-height: 200px;  //最小高度200px
+    background-color: white;
+  }
+  .comment_submit{
+    margin-top: 20px;  //跟文章主体分隔开
+    min-height: 200px;
+    background-color: white;
+    padding: 20px 20px 10px 20px; //评论部分上右下左都留白
+    .title{
+      padding-bottom: 10px;       //
+      margin-bottom: 10px;
+      border-bottom: 1px solid #f0eeee;
+      color: #555555;
+      position: relative;   //先给一个相对定位，子元素给绝对定位
+      &::after{    //使用伪元素实现一条短实线的效果
+        display: block;   //块级元素，可占用一定的矩形空间
+        content: '';
+        width: 145px;
+        height: 1px;
+        background-color: #333333;
+        position: absolute;  //使用绝对定位
+        bottom: 0;
+        left: 0;
+      }
+    }
+    .body{
+      width: calc(100% - 40px);  //因为有了20px的padding
+      padding: 20px;
+      height: 150px;
+      background-color: #f5f5f5;
+      border-radius: 5px; //5px圆角
+      position: relative;   //祖传父级先写成相对位置，button位置绝对定位
+      box-shadow: inset 2px 2px 6px rgb(0 0 0 / 8%);  //边框内阴影
+      textarea{   //选中文档框，设置宽高，去除白色背景色和边框
+        width: 100%;
+        height: 100%;
+        background-color: transparent;  //给一个透明色
+        border: none;   //边框设置为无色
+        resize: none;   //让text框不能随意调节大小
+
+        &:focus{   //此时文本框看着是透明的，但点击还是出现黑框，所以添加此焦点事件。
+          border: none;
+          outline: none;
+        }
+      }
+      >button{
+        width: 100px;
+        height: 40px;
+        border-radius: 10px;  //10px圆角
+        background-color: #ff9800;   //黄色背景
+        color: white;   //白色字体
+        border: none;    //边框无
+        cursor: pointer;    //鼠标点击效果
+
+        position: absolute;   //调整提交按钮位置
+        bottom: 20px;
+        right: 20px;
+      }
+    }
+
+    .footer{
+      font-size: 14px;  //字体大小
+      color: #555555;   //字体为黑色
+      margin-top: 10px;   //向上的间隔
+      p>span{
+        color: #ff9800;   //数字改成主题色
+      }
+    }
+  }
+}

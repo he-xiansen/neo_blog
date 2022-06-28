@@ -18,7 +18,7 @@ def random_color():
 str_all = string.digits+string.ascii_letters  # 数字+大小写
 
 # 封装成验证码函数
-def random_code(size=(200,40),length=4,point_num=100,line_num=10):    # 将宽高以元组方式传入，且默认200*40  # 将验证码位数传入，默认4位，点，线数也是。
+def random_code(size=(152,35),length=4,point_num=100,line_num=10):    # 将宽高以元组方式传入，且默认200*40  # 将验证码位数传入，默认4位，点，线数也是。
     width,height = size
 
     # 生成200*40的白色背景图片，背景模式RGB，颜色：color
@@ -35,7 +35,7 @@ def random_code(size=(200,40),length=4,point_num=100,line_num=10):    # 将宽�
     for i in range(length):   #这里验证码长度由传入的参数决定
         random_char= random.choice(str_all)  # 用到了random方法取随机数。
         # draw.text方法(书写文字)  参数1 xy轴起始位置  参数2 字符 参数3 字体颜色:黑色 参数4 字体指定
-        draw.text((40*i+20,10),random_char,(0,0,0),font=font)
+        draw.text((35*i+20,10),random_char,(0,0,0),font=font)
         valid_code += random_char
     print(valid_code)
 

@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 
-from django.urls import path,re_path
+from django.urls import path,re_path,include
 from django.conf import settings
 from django.views.static import serve
 from app01 import views
@@ -29,4 +29,9 @@ urlpatterns = [
     path('login/',views.login),    #登录视图
     path('login/random_code/',views.get_random_code), # 生成验证码视图
     path('sign/',views.sign),   #注册视图
+    path('logout/',views.logout),  # 注销登录视图
+
+    re_path(r'^article/(?P<nid>\d+)/',views.article),  #文章详情页
+
+    re_path(r'^api/',include('api.urls')),   # 路由分发，将所有api开头的请求分发到api这个urls.py中
 ]

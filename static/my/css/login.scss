@@ -78,8 +78,10 @@ main{
         }
         img{
           height: 35px;        //调整图标高度
+          width: 175px;
           border-radius: 5px;  //圆角
           cursor: pointer;     //手指
+          border:1px solid #f0eeee;
         }
       }
       >button{

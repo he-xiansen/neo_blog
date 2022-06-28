@@ -1,12 +1,17 @@
-from django.shortcuts import render,HttpResponse
+from django.shortcuts import render,HttpResponse,redirect
 
 # Create your views here.
 from django.http import JsonResponse
 import json
 from app01.utils.random_code import random_code  # 引入生成验证码模块
 
-from django import forms    #引入表单类用于登录验证。
+from django import forms    # 引入表单用于登陆验证
 
+# from django.core.exceptions import NON_FIELD_ERRORS, ValidationError  # 用来抛出指定异常。
+
+from django.contrib import auth   #引入auth模块
+
+from app01.models import UserInfo  # 引入userinfo用于验证
 
 def index(request):
     # img_list = [
@@ -15,68 +20,21 @@ def index(request):
     #     "http://192.168.42.13:8000/media/site_bg/22.jpg",
     # ]
     # return render(request,'index.html',{'img_list':img_list})
-    return render(request, 'index.html' )
+    return render(request, 'index.html',{'request':request})
+
+def article(request,nid):
+    return render(request,'article.html')
 
 def news(request):
     return render(request,'news.html')
 
-class LoginForm(forms.Form):
-    name = forms.CharField(error_messages={'required':'请输入用户名'})  #将原来的‘这个字段是必需的改为对应的错误信息’
-    pwd = forms.CharField(error_messages={'required':'请输入密码'})
-    code = forms.CharField(error_messages={'required':'请输入验证码'})
+##  原有登录注册字段验证位置。
 
+
+
+# 登录视图
 def login(request):
-    if request.method == 'POST':
-        res = {
-            'code':425,     # 0 成功，非0失败
-            'msg':"登陆成功",
-            'self':None      #self 表示错误的是哪一个，没有错误时是none。
-        }
-        data = request.data # 请求体
 
-        form = LoginForm(data)
-        # print(form.is_valid())    # 加入用户名，密码，code有一个内容为空，则为false
-        if not form.is_valid():
-            # 验证不通过
-            err_dict:dict = form.errors
-            # 拿到所有错误字段的名字，使用字典的取字段方法
-            err_valid = list(err_dict.keys())[0]  # 其中err_dict.keys()是伪列表，使用list将其变为真列表。
-            # 拿到第一个字段的第一个错误信息。
-            err_msg = err_dict[err_valid][0]
-            res['msg'] = err_msg
-            res['self'] = err_valid
-            return JsonResponse(res)
-
-        # name = data.get('name')
-        # if not name:
-        #     res['msg'] = '请输入用户名'
-        #     res['self'] = 'name'
-        #     return JsonResponse(res)
-        # pwd = data.get('pwd')
-        # if not pwd:
-        #     res['msg'] = '请输入密码'
-        #     res['self'] = 'pwd'
-        #     return JsonResponse(res)
-        # code = data.get('code')
-        # if not code:
-        #     res['msg'] = '请输入验证码'
-        #     res['self'] = 'code'
-        #     return JsonResponse(res)
-
-        # valid_code:str = request.session.get('valid_code') # 从session中取验证码
-        #
-        # if valid_code.upper() != code.upper():
-        #
-        #     res['msg'] = '验证码输入错误'
-        #     res['self'] = 'code'
-        #     return JsonResponse(res)
-        # # 校验用户名和密码
-        # if name != 'fengfeng' or pwd != '1234':
-        #     res['msg'] = '用户名或密码输入错误'
-        #     res['self'] = 'pwd'
-        #     return JsonResponse(res)
-        res['code'] = 0    #当错误的都未发生，则code=0
-        return JsonResponse(res)  #传回前端
     return render(request,'login.html')
 
 # 获取随机验证码
@@ -88,4 +46,9 @@ def get_random_code(request):
     return HttpResponse(data)
 
 def sign(request):
+
     return render(request,'sign.html')
+
+def logout(request):
+    auth.logout(request)   # 使用auth登出，此时后台
+    return redirect('/')

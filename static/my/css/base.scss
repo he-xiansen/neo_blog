@@ -1,0 +1,186 @@
+nav{
+  width:calc(100% - 240px);  //因为左右水平缩进了120，所以宽度减去240.
+  height:60px;
+  display:flex;
+  align-items: center;
+  padding:0 120px;   //水平缩进120px
+  position: fixed;   //以body位置为参考，布局
+  z-index: 100;    //数值越大，层叠在上面  即需要导航条位于图片上面。
+  top: 0;      //固定顶部导航条位置
+  left: 0;     //固定顶部导航条位置
+
+  .left{
+    width:60%;
+  }
+  .right{
+    width:40%;
+    display:flex;
+    justify-content: right;   //靠右排
+    img{
+      width:20px;
+      margin-right:20px;  //设置图标和其他元素间隔20px
+      cursor: pointer;    //将箭头改为手指
+    }
+    .el-dropdown{
+      color: white;
+      span{
+        cursor: pointer;
+      }
+    }
+  }
+  a{
+    margin-right:20px;
+    color: #FF00FF;     //文字改为白色，方便看得清。
+    &:last-child{       //选中最后一个元素
+      margin-right:0;
+    }
+  }
+}
+header{
+  width:100%;
+  height:600px;
+  position:relative;   //relative和absolute搭配使用
+  >.dynamic_shuffl{
+    position:absolute;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    overflow: hidden;     //多出部分隐藏
+    transition: all 1s;    //设置切换效果（换图片不会太生硬
+
+    opacity:0;
+
+    &:first-child{
+      opacity:1;
+    }
+
+    img{
+      width:100%;
+    }
+  }
+}
+main{
+  width:calc(100% - 240px);
+  padding:20px 120px;  //上下20px  左右120px
+  min-height: 600px;
+  background-color: var(--main_bg);
+  color:var(--main_color);
+  display:flex;      //使用灵活布局
+  justify-content:center;   //居中
+}
+
+.el-dropdown-menu{
+  a{
+    color:#333333;
+  }
+}
+
+//底部信息栏
+footer{
+    width:100%;
+    display:flex;   //使用灵活布局，保证可以两边排列
+    height: 180px;
+    background-color: var(--footer_bg);
+    color:var(--footer_color);
+    font-size: 14px;
+    .left,.right{
+      p{
+      margin:0;
+      }
+      width:50%;
+      display:flex;   //灵活布局
+      flex-direction: column;  //主轴为垂直方向，起点在上沿。即一行一行的内容，从上往下。
+      justify-content: center;  //居中
+      align-items: center;     //交叉轴中点对齐
+    }
+    .thank{
+      color: #26c6e1;
+      font-size: 20px;
+    }
+    .site_info{
+      display:flex;   //灵活布局
+      align-items: center;  //交叉轴中点对齐
+      span{
+        margin-right: 10px;
+        display:flex;
+        align-items:center;
+      }
+      img{
+        width:20px;
+        margin-right:5px;
+      }
+    }
+    .version{
+      display:flex;
+      span{
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        color:white;
+        background-color: #333333;
+        height:30px;
+        width:80px;
+        &:nth-child(1){
+          background-color: #ff9800;
+          border-radius: 5px 0 0 5px;  //圆角左上，右上，右下，左下
+        }
+        &:nth-child(2){
+          background-color: #26c6da;
+          border-radius: 0 5px 5px 0;
+        }
+      }
+    }
+
+    .beian{
+      a{
+        display:flex;
+        align-items:center;
+      }
+    }
+    p{
+      margin-bottom:10px;
+    }
+    .contact{
+      display:flex;
+      width:200px;
+      justify-content:space-between;    //两端对齐，项目之间间距都相同
+      >div{
+        position:relative;
+        .qq{                      //qq二维码位置
+          width:80px;
+          position:absolute;
+          top:-30px;
+          left:-19px;
+          transition: all 0.4s; //0.4s过渡
+          opacity: 0;
+        }
+        .wx{                      //微信公众号二维码位置
+          width:80px;
+          position:absolute;
+          top:-30px;
+          left:-19px;
+          transition: all 0.4s; //0.4s过渡
+          opacity: 0;
+        }
+      }
+      .svg{
+        width: 30px;
+        cursor: pointer;
+        position: relative;
+        z-index: 1;
+        &:hover{
+          &~.qq{     //兄弟选择器？？
+            top:-80px;
+            left:-26px;
+            opacity: 1;
+          }
+          &~.wx{     //兄弟选择器？？
+            top:-80px;
+            left:-26px;
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
