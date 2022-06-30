@@ -1,5 +1,5 @@
 .article{
-  width: 100%;
+  width: 1200px;   //将整个文章设置为固定宽度
   .article_title{
     display: flex;
     flex-direction: column;  //纵向布局
@@ -98,6 +98,116 @@
       margin-top: 10px;   //向上的间隔
       p>span{
         color: #ff9800;   //数字改成主题色
+      }
+    }
+  }
+
+  .comment_list{
+    margin-top: 20px;
+    ul {
+      list-style: none;
+    }
+
+    > ul {
+      > li {
+        width: 100%;
+        display: flex;
+        >.left {
+          width: 70px;
+          img {
+            width: 50px;
+            height: 50px;
+            border-radius: 5px;
+            transition: all 0.3s;
+
+            &:hover{
+              transform: scale(1.1);  //放大1.1倍
+            }
+          }
+        }
+        >.right{
+          width: calc(100% - 70px);
+          background-color: white;
+          border-radius: 5px;
+          position: relative;
+          box-shadow: 1px 1px 5px rgba(0,0,0,0.1);
+          padding: 10px 20px;
+          
+          &::after{    //实现白色小三角
+            display: block;
+            content: '';
+            position: absolute;
+            left: -20px;
+            top: 15px;
+            width: 1px;
+            height: 1px;
+            border: 10px solid transparent;
+            border-right-color: white;
+          }
+          .comment_content{
+            margin: 5px 0;
+            img{     //如果评论中有图片，设置其格式
+              margin-top: 5px;
+              height: 120px;
+              margin-right: 10px;
+              border-radius: 5px;
+              box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            }
+          }
+
+          .comment_info{
+            display: flex;        //灵活布局和两端对齐，保证其分为左右两块
+            justify-content: space-between;
+            font-size: 14px;
+            >div>span{
+              cursor: pointer;
+
+            }
+
+          }
+          .delete{
+            color: red;
+            cursor: pointer;
+          }
+
+          .sub_comment_list{
+            margin-top: 10px;
+            >div{
+              display: flex;
+              margin-bottom: 10px;
+              .left{
+                width: 60px;
+
+                img{
+                  width: 40px;
+                  height: 40px;
+                  border-radius: 5px;
+                  transition: all 0.3s;
+
+                  &:hover{
+                    transform: scale(1.1);  //放大1.1倍
+                  }
+                }
+              }
+              .right{
+                width: calc(100% - 60px);
+                .sub_comment_content{
+                  margin: 5px 0;
+                }
+                .sub_comment_info{
+                  display: flex;
+                  justify-content: space-between;
+                  font-size: 14px;
+                  >div>span{
+                    cursor: pointer;
+
+                  }
+                }
+              }
+            }
+          }
+
+        }
       }
     }
   }
