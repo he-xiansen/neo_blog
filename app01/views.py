@@ -12,6 +12,7 @@ from django import forms    # 引入表单用于登陆验证
 from django.contrib import auth   #引入auth模块
 
 from app01.models import UserInfo  # 引入userinfo用于验证
+from app01.models import Articles
 
 def index(request):
     # img_list = [
@@ -23,7 +24,13 @@ def index(request):
     return render(request, 'index.html',{'request':request})
 
 def article(request,nid):
-    return render(request,'article.html')
+    article_query = Articles.objects.filter(nid=nid)
+
+    if not article_query:
+        return redirect('/')
+    article = article_query.first()
+    # print(article.abstract)  测试是否能获得文章描述
+    return render(request,'article.html',locals())
 
 def news(request):
     return render(request,'news.html')

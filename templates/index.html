@@ -56,7 +56,10 @@
         </div>
     </nav>
 {#    为什么传的是index，因为有index这个变量在底部js中。#}
-    {% banner 'index' %}
+    {% block banner %}
+        {% banner 'index' %}
+    {% endblock %}
+
 
     <main>
         {% block main%}

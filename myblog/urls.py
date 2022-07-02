@@ -16,15 +16,17 @@ Including another URLconf
 from django.contrib import admin
 
 from django.urls import path,re_path,include
-from django.conf import settings
-from django.views.static import serve
+
+from django.conf import settings      # media
+from django.views.static import serve # media
+
 from app01 import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.index),      #主页
     #media配置
-    re_path(r'media/(?P<path>.*)$',serve,{'document_root':settings.MEDIA_ROOT}),
+    re_path(r'media/(?P<path>.*)$',serve,{'document_root': settings.MEDIA_ROOT}),
     path('news/',views.news),      #新闻
     path('login/',views.login),    #登录视图
     path('login/random_code/',views.get_random_code), # 生成验证码视图
