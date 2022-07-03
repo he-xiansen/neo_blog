@@ -29,7 +29,7 @@ def article(request,nid):
     if not article_query:
         return redirect('/')
     article = article_query.first()
-    # print(article.abstract)  测试是否能获得文章描述
+    print(article.content)  #测试是否能获得文章描述
     return render(request,'article.html',locals())
 
 def news(request):

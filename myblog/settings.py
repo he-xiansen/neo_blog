@@ -149,5 +149,5 @@ STATICFILES_DIRS = [
 
 #media配置
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
-MEDIR_URL = '/media/'
+MEDIA_URL = '/media/'
 

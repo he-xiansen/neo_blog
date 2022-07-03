@@ -41,6 +41,24 @@ header {
   height: 600px;
   position: relative;
 }
+header .title {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  color: white;
+}
+header .title h1 {
+  font-size: 30px;
+  font-weight: 400;
+  text-align: center;
+  margin-top: 10px;
+}
+header .title p {
+  font-size: 18px;
+  text-align: center;
+}
 header > .dynamic_shuffl {
   position: absolute;
   left: 0;

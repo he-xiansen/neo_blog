@@ -40,6 +40,27 @@ header{
   width:100%;
   height:600px;
   position:relative;   //relative和absolute搭配使用
+
+  .title{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);  //保证标题和介绍在中间
+    z-index: 1;
+    color: white;
+    h1{
+      font-size: 30px;
+      font-weight: 400;
+      text-align: center;
+
+      margin-top: 10px;
+    }
+    p{
+      font-size: 18px;
+      text-align: center;
+    }
+  }
+
   >.dynamic_shuffl{
     position:absolute;
     left:0;

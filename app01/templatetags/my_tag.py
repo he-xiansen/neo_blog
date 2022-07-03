@@ -16,7 +16,7 @@ def banner(menu_name,article=None):
         "http://192.168.42.13:8000/media/site_bg/17.jpg",
     ]
     if article:
-        #说明是文章详情页面
+        # 说明是文章详情页面
         # 拿到文章的封面
         cover = article.cover.url.url
         img_list = [cover]
