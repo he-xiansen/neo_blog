@@ -1,0 +1,14 @@
+body{
+  display: flex;
+}
+aside{
+  width: 200px;
+  height: 100vh;
+  background-color: #26c6da;
+}
+
+main{
+  width: calc(100% - 200px);
+  height: 100vh;
+  background-color: #e4ab0d;
+}

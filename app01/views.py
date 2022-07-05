@@ -59,3 +59,6 @@ def sign(request):
 def logout(request):
     auth.logout(request)   # 使用auth登出，此时后台
     return redirect('/')
+
+def backend(request):
+    return render(request,'backend/backend.html')
