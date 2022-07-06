@@ -5,17 +5,126 @@
     <title>后台界面</title>
     <link rel="stylesheet" href="/static/my/css/reset.css">
     <link rel="stylesheet" href="/static/my/css/backend/backend_base.css">
+
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
 </head>
 <body>
-<aside>
-<div class="slogan">
-    <img src="/static/my/img/backend/slogan.png" alt="">
+
+<div id="app">
+    <aside>
+        <div class="slogan">
+        <img src="/static/my/img/backend/slogan.png" alt="">
+    </div>
+        <ul>
+        <li>
+            <a href="/">首页</a>
+        </li>
+        <li>
+            <a href="/backend/">个人中心</a>
+        </li>
+        <li>
+            <a href="/backend/edit_avatar">修改头像</a>
+        </li>
+        <li>
+            <a href="/backend/reset_password">修改密码</a>
+        </li>
+    </ul>
+    </aside>
+
+    <main>
+        <div class="user_info">
+            <div class="left">
+                <img src="/static/my/img/head.jpg" alt="">
+            </div>
+            <div class="right">
+                <div class="item">
+                    <span><b>用户名：</b>neone</span>
+                </div>
+                <div class="item">
+                    <span><b>注册时间：</b>2022-3-1</span>
+                </div>
+                <div class="item">
+                    <span><b>上次登录时间：</b>2022-3-1</span>
+                </div>
+                <div class="item">
+                    <span><b>用户积分：</b>20</span>
+                </div>
+                <div class="item">
+                    <span><b>邮箱：</b>hlf_neo@163.com</span>
+                </div>
+                <div class="item">
+                    <span><b>手机号码：</b>15827215438</span>
+                </div>
+            </div>
+        </div>
+        <div class="actions">
+            <div class="item">
+                <el-button>完善信息</el-button>
+            </div>
+            <div class="item">
+                <el-button type="success">修改头像</el-button>
+            </div>
+            <div class="item">
+                <el-button type="warning">修改密码</el-button>
+            </div>
+            <div class="item">
+                <el-button type="danger">注销推出</el-button>
+            </div>
+        </div>
+        <div class="collection_article_all">
+            <p>我收藏的文章</p>
+            <div class="article_list">
+                <div class="item">
+                    <div class="left">
+                        <img src="/media/article_img/37.jpg" alt="">
+                    </div>
+                    <div class="right">
+                        <h4>设计模式</h4>
+                        <p>对软件设计中普遍存在（反复出现）的各种问题，所提出的解决方案。每一个设计模式系统地命名、解释和评价了面向对象系统中一个重要的和重复出现的设计。</p>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="left">
+                        <img src="/media/article_img/37.jpg" alt="">
+                    </div>
+                    <div class="right">
+                        <h4>设计模式</h4>
+                        <p>对软件设计中普遍存在（反复出现）的各种问题，所提出的解决方案。每一个设计模式系统地命名、解释和评价了面向对象系统中一个重要的和重复出现的设计。</p>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="left">
+                        <img src="/media/article_img/37.jpg" alt="">
+                    </div>
+                    <div class="right">
+                        <h4>设计模式</h4>
+                        <p>对软件设计中普遍存在（反复出现）的各种问题，所提出的解决方案。每一个设计模式系统地命名、解释和评价了面向对象系统中一个重要的和重复出现的设计。</p>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="left">
+                        <img src="/media/article_img/37.jpg" alt="">
+                    </div>
+                    <div class="right">
+                        <h4>设计模式</h4>
+                        <p>对软件设计中普遍存在（反复出现）的各种问题，所提出的解决方案。每一个设计模式系统地命名、解释和评价了面向对象系统中一个重要的和重复出现的设计。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
 </div>
-</aside>
 
-<main>
 
-</main>
+
+<script src="/static/vue/vue.js"></script>
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+
+<script>
+    new Vue({
+        el: '#app',
+    })
+</script>
 
 </body>
 </html>

@@ -1,14 +1,132 @@
-body{
+#app {
   display: flex;
 }
 aside{
   width: 200px;
   height: 100vh;
-  background-color: #26c6da;
+  background-color: #304156;
+
+  .slogan{
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    img{
+      width: 80%;
+    }
+  }
+  > ul{
+      width: 100%;
+      margin-top: 40px;
+      > li{
+        width: 100%;
+        height: 40px;
+        justify-content: center;
+        display: flex;
+        align-items: center;
+        transition: all 0.3s;
+        a{
+          color: white;
+        }
+
+        &:hover{
+          background-color: rgba(0,0,0,0.2);
+        }
+      }
+  }
 }
 
 main{
+  padding: 20px;
+  box-sizing: border-box;
   width: calc(100% - 200px);
   height: 100vh;
-  background-color: #e4ab0d;
+  background-color: #f0eeee;
+
+  .user_info{
+    width: 100%;
+    display: flex;  //使用flex，方便头像和介绍左右排
+    border-radius: 5px;
+    background-color: #808595;
+    .left{
+      width: 20%;
+      display: flex;
+      justify-content: center;    //居中排列
+      align-items: center;       //？
+      img{
+        width: 80px;
+        border-radius: 50%;
+      }
+    }
+
+    .right{
+      width: 50%;
+      display: flex;
+      flex-wrap: wrap;
+
+      .item{
+        width: 50%;
+        height: 40px;
+        display: flex;
+        align-items: center;
+      }
+    }
+  }
+
+  .actions{
+    width: 100%;
+    height: 60px;
+    border-radius: 5px;
+    margin-top: 20px;
+    background-color: #808595;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .collection_article_all{
+    border-radius: 5px;
+    margin-top: 20px;
+    background-color: #808595;
+
+    p{
+      text-align: center;
+      padding-top: 10px;
+      font-size: 18px;
+    }
+
+    .article_list{
+      margin-top: 10px;
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;  //允许换行
+
+      .item{
+        box-sizing: border-box;  //有了此项，padding不会影响块大小
+        width: 33.33%;
+        display: flex;
+        padding: 20px;
+
+        .left{
+          width: 30%;
+          img{
+            width: 100%;
+          }
+        }
+
+        .right{
+          width: 70%;
+          box-sizing: border-box;  //有了此项，padding不会影响块大小
+          padding-left: 10px;
+          p{
+            display: -webkit-box;
+            overflow: hidden;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+          }
+        }
+      }
+    }
+  }
 }

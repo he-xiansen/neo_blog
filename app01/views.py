@@ -61,4 +61,8 @@ def logout(request):
     return redirect('/')
 
 def backend(request):
+    print(request.user.username)
+    if not request.user.username:
+        # 没有登陆
+        return redirect('/')
     return render(request,'backend/backend.html')
