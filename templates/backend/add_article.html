@@ -1,0 +1,102 @@
+{% extends 'backend/backend.html' %}
+
+{% block css %}
+    <link rel="stylesheet" href="/static/editor-md/css/editormd.css"/>
+    <link rel="stylesheet" href="/static/my/css/backend/add_article.css">
+{% endblock %}
+
+{% block main %}
+    <div class="add_article_actions">
+        <el-button type="primary" @click="add_drawer=true">完善文章信息</el-button>
+    </div>
+    <el-drawer
+            title="添加文章"
+            :visible.sync="add_drawer"
+{#            :direction="rtl"#}
+            :before-close="add_handleClose">
+        <div class="add_el_drawer_content">
+            <el-collapse v-model="add_article_activeNames" @change="add_el_collapse_handleChange">
+              <el-collapse-item title="文章标题" name="1">
+                  <el-input v-model="title" placeholder="请输入文章标题"></el-input>
+{#                  <input type="text" placeholder="请输入文章标题">#}
+              </el-collapse-item>
+              <el-collapse-item title="文章分类和标题" name="2">
+                <el-select v-model="category_id" placeholder="请选择文章分类">
+                  <el-option
+                    v-for="item in category_options"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value">
+                  </el-option>
+                </el-select>
+                <el-select
+                  v-model="tags"
+                  multiple
+                  collapse-tags
+                  style="margin-left: 20px;"
+                  placeholder="请选择文章标签">
+                  <el-option
+                    v-for="item in tag_options"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value">
+                  </el-option>
+                </el-select>
+              </el-collapse-item>
+              <el-collapse-item title="文章封面" name="3">
+                <div class="left">
+                    <img src="/media/article_img/33.jpg" alt="">
+                </div>
+                <div class="right">
+                    <el-select v-model="cover_id" placeholder="请选择文章封面">
+                        <el-option
+                            label="/media/article_img/33.jpg"
+                            value="1">
+                        </el-option>
+                        <el-option
+                            label="/media/article_img/34.jpg"
+                            value="2">
+                        </el-option>
+                    </el-select>
+                </div>
+              </el-collapse-item>
+              <el-collapse-item title="文章可选设置" name="4">
+               <el-switch
+                  v-model="recommend"
+                  active-color="#13ce66"
+                  inactive-color="#ff4949"
+                  active-text="上推荐"
+                  inactive-text="不上推荐">
+                </el-switch>
+                <el-switch
+                  v-model="pwd_active"
+                  active-text="加密"
+                  inactive-text="不加密">
+                </el-switch>
+
+                <el-input v-show="pwd_active" v-model="pwd" placeholder="请输入文章加密密码"></el-input>
+              </el-collapse-item>
+            </el-collapse>
+        </div>
+    </el-drawer>
+    <div id="editor">
+        <textarea style="display:none;"></textarea>
+    </div>
+{% endblock %}
+
+{% block js %}
+    <script src="/static/editor-md/lib/marked.min.js"></script>
+    <script src="/static/editor-md/lib/prettify.min.js"></script>
+    <script src="/static/jquery/jquery.min.js"></script>
+    <script src="/static/editor-md/editormd.min.js"></script>
+
+    <script>
+        $(function () {
+            editormd("editor", {
+                width: "100%",
+                height: "800",
+                path: "/static/editor-md/lib/",
+            });
+        });
+    </script>
+{% endblock %}

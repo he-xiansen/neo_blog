@@ -7,6 +7,10 @@
     <link rel="stylesheet" href="/static/my/css/backend/backend_base.css">
 
     <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    
+    {% block css %}
+    
+    {% endblock %}
 </head>
 <body>
 
@@ -16,23 +20,20 @@
         <img src="/static/my/img/backend/slogan.png" alt="">
     </div>
         <ul>
-        <li>
-            <a href="/">首页</a>
-        </li>
-        <li>
-            <a href="/backend/">个人中心</a>
-        </li>
-        <li>
-            <a href="/backend/edit_avatar">修改头像</a>
-        </li>
-        <li>
-            <a href="/backend/reset_password">修改密码</a>
-        </li>
+        <li><a href="/">首页</a></li>
+        <li><a href="/backend/">个人中心</a></li>
+        <li><a href="/backend/edit_avatar/">修改头像</a></li>
+        <li><a href="/backend/reset_password/">修改密码</a></li>
+        {% if request.user.is_superuser %}
+            <li><a href="/backend/add_article/">添加文章</a></li>
+        {% endif %}
+        <li><a href="/logout/">注销退出</a></li>
     </ul>
     </aside>
 
     <main>
-        <div class="user_info">
+        {% block main %}
+            <div class="user_info">
             <div class="left">
                 <img src="/static/my/img/head.jpg" alt="">
             </div>
@@ -57,7 +58,7 @@
                 </div>
             </div>
         </div>
-        <div class="actions">
+            <div class="actions">
             <div class="item">
                 <el-button>完善信息</el-button>
             </div>
@@ -71,7 +72,8 @@
                 <el-button type="danger">注销推出</el-button>
             </div>
         </div>
-        <div class="collection_article_all">
+            {% block content %}
+                <div class="collection_article_all">
             <p>我收藏的文章</p>
             <div class="article_list">
                 <div class="item">
@@ -112,6 +114,8 @@
                 </div>
             </div>
         </div>
+            {% endblock %}
+        {% endblock %}
     </main>
 </div>
 
@@ -119,10 +123,61 @@
 
 <script src="/static/vue/vue.js"></script>
 <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+{% block js %}
 
+{% endblock %}
 <script>
     new Vue({
         el: '#app',
+        data:{
+            // 是否展开添加文章的侧边栏
+            add_drawer:false,
+            // 选中的
+            add_article_activeNames: ['1'],
+            // 文章分类的id
+            category_id:'',
+            // 文章分类
+            category_options:[
+                {value:0,label:'前端'},
+                {value:1,label:'后端'},
+                {value:2,label:'项目相关'},
+            ],
+            // 选中的文章标签
+            tags:[],
+            // 文章标签列表
+            tag_options:[
+                {value:0,label:'python'},
+                {value:1,label:'django'},
+                {value:2,label:'java'},
+                {value:3,label:'PHP'},
+                {value:4,label:'docker'},
+            ],
+            // 是否上推荐
+            recommend:true,
+            // 是否需要密码查看
+            pwd_active:false,
+            // 文章密码
+            pwd:'',
+            // 文章封面id
+            cover_id:'',
+            // 文章标题
+            title:'',
+        },
+        methods:{
+            add_handleClose(done){
+                //添加文章侧边栏关闭之前的函数
+                this.$confirm('确认关闭？')
+                    .then(_ => {
+                        done();
+                    })
+                    .catch(_ => {
+
+                    });
+            },
+            add_el_collapse_handleChange(val){
+                console.log(val)
+            }
+        }
     })
 </script>
 

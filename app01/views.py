@@ -60,9 +60,17 @@ def logout(request):
     auth.logout(request)   # 使用auth登出，此时后台
     return redirect('/')
 
-def backend(request):
-    print(request.user.username)
+def backend(request):    # 后台
     if not request.user.username:
         # 没有登陆
         return redirect('/')
-    return render(request,'backend/backend.html')
+    return render(request,'backend/backend.html',locals())
+
+def add_article(request):  #后台添加文章
+    return render(request,'backend/add_article.html',locals())
+
+def edit_avatar(request):   # 后台修改头像
+    return render(request,'backend/edit_avatar.html',locals())
+
+def reset_password(request):  # 后台修改密码
+    return render(request,'backend/reset_password.html',locals())

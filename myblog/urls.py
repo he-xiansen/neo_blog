@@ -32,7 +32,10 @@ urlpatterns = [
     path('login/random_code/',views.get_random_code), # 生成验证码视图
     path('sign/',views.sign),   #注册视图
     path('logout/',views.logout),  # 注销登录视图
-    path('backend/',views.backend),
+    path('backend/',views.backend),  # 后台视图
+    path('backend/add_article/',views.add_article),   # 后台添加文章
+    path('backend/edit_avatar/',views.edit_avatar),
+    path('backend/reset_password/',views.reset_password),
     re_path(r'^article/(?P<nid>\d+)/',views.article),  #文章详情页
 
     re_path(r'^api/',include('api.urls')),   # 路由分发，将所有api开头的请求分发到api这个urls.py中
