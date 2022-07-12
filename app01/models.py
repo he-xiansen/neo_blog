@@ -109,6 +109,7 @@ class Articles(models.Model):
     category_choice = (
         (0, '前端'),
         (1, '后端'),
+        (2,'项目相关'),
     )
     category = models.IntegerField(verbose_name='文章分类', choices=category_choice, null=True, blank=True)
     tag = models.ManyToManyField(

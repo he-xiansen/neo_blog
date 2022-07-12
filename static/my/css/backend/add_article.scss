@@ -1,3 +1,54 @@
 .add_article_actions{
   margin-bottom: 20px;
 }
+
+.el-drawer__body{     //发布文章按钮的相对父类
+  position: relative;
+}
+
+.add_el_drawer_content{
+  padding: 0 20px;
+
+  .category_tags .el-collapse-item__content{
+    display: flex;
+    .category{
+      width: 40%;
+    }
+    .tags{
+      width: 60%;
+    }
+  }
+
+  .article_cover .el-collapse-item__content{
+    display: flex;
+    justify-content: space-between;  //两端对齐
+    align-items: center;   //让选择框在垂直方向上居中
+    .left{
+      width: 40%;
+
+      img{
+        width: 100%;
+      }
+    }
+    .right{
+      width: 58%;
+      .el-select{
+        width: 100%;
+      }
+    }
+
+  }
+
+  .can_choose_ .el-collapse-item__content{
+    > div{
+      display: block;
+      //margin-bottom: 10px;
+    }
+  }
+
+  .article_btn_list{
+    position: absolute;  //发布文章按钮的绝对定位
+    bottom: 20px;     //绝对位置
+    right: 20px;      //绝对位置
+  }
+}

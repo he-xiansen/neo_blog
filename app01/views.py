@@ -12,7 +12,7 @@ from django import forms    # 引入表单用于登陆验证
 from django.contrib import auth   #引入auth模块
 
 from app01.models import UserInfo  # 引入userinfo用于验证
-from app01.models import Articles
+from app01.models import Articles,Tags,Cover   # 引入Articles和Tags,Cover表
 
 def index(request):
     # img_list = [
@@ -67,6 +67,11 @@ def backend(request):    # 后台
     return render(request,'backend/backend.html',locals())
 
 def add_article(request):  #后台添加文章
+    # 拿到所有的标签
+    tag_list = Tags.objects.all()
+
+    # 拿到所有的文章封面
+    cover_list = Cover.objects.all()
     return render(request,'backend/add_article.html',locals())
 
 def edit_avatar(request):   # 后台修改头像

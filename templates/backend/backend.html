@@ -145,13 +145,13 @@
             // 选中的文章标签
             tags:[],
             // 文章标签列表
-            tag_options:[
-                {value:0,label:'python'},
-                {value:1,label:'django'},
-                {value:2,label:'java'},
-                {value:3,label:'PHP'},
-                {value:4,label:'docker'},
-            ],
+            {#tag_options:[#}
+            {#    {value:0,label:'python'},#}
+            {#    {value:1,label:'django'},#}
+            {#    {value:2,label:'java'},#}
+            {#    {value:3,label:'PHP'},#}
+            {#    {value:4,label:'docker'},#}
+            {#],#}
             // 是否上推荐
             recommend:true,
             // 是否需要密码查看
@@ -162,20 +162,50 @@
             cover_id:'',
             // 文章标题
             title:'',
+            //文章简介
+            abstract:''
         },
         methods:{
             add_handleClose(done){
                 //添加文章侧边栏关闭之前的函数
-                this.$confirm('确认关闭？')
-                    .then(_ => {
-                        done();
-                    })
-                    .catch(_ => {
-
-                    });
+                {#this.$confirm('确认关闭？')#}
+                {#    .then(_ => {#}
+                {#        done();#}
+                {#    })#}
+                {#    .catch(_ => {#}
+                {##}
+                {#    });#}
+                done()
             },
+
+            //添加文章的函数
+            add_article(){
+                let data = {
+                    title: this.title,
+                    cover_id:this.cover_id,
+                    pwd: this.pwd,
+                    recommend: this.recommend,
+                    tags: this.tags,
+                    category_id: this.category_id,
+                    abstract:this.abstract,
+                    content: editor.querySelector('.editormd-markdown-textarea').value
+                }
+
+                console.log(data)
+            },
+
+            select_cover(val){
+                {#console.log(val)  //打印cover的nid#}
+                setTimeout(() => {
+                    let v = document.querySelector('.article_cover input').value
+                    let cover = document.getElementById('cover_img')
+                    cover.src = v
+                },1)
+            },
+
             add_el_collapse_handleChange(val){
                 console.log(val)
+
             }
         }
     })
