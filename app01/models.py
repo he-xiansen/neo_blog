@@ -117,7 +117,7 @@ class Articles(models.Model):
         verbose_name='文章标签',
         blank=True
     )
-
+    pwd = models.CharField(max_length=32,verbose_name='文章密码',null=True,blank=True)
     author = models.CharField(max_length=16, verbose_name='作者', null=True, blank=True)
     source = models.CharField(max_length=32, verbose_name='来源', null=True, blank=True)
 

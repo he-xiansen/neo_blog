@@ -32,6 +32,7 @@
     </aside>
 
     <main>
+        {% csrf_token %}
         {% block main %}
             <div class="user_info">
             <div class="left">
@@ -120,13 +121,32 @@
 </div>
 
 
-
+<script src="/static/axios/axios.min.js"></script>
 <script src="/static/vue/vue.js"></script>
 <script src="https://unpkg.com/element-ui/lib/index.js"></script>
 {% block js %}
 
 {% endblock %}
 <script>
+    //请求中间件
+    axios.interceptors.request.use(
+        request => {
+            if (request.method === 'post'){
+                let csrftoken = document.querySelector('input[name="csrfmiddlewaretoken"]').value
+                request.headers['X-CSRFToken'] = csrftoken
+            }
+            return request     //这里如果不return返回，下面的methods中是接受不到的。
+        },
+    )
+
+    //响应中间件
+    axios.interceptors.response.use(
+        response => {
+
+            return response.data    //这里如果不return返回，下面的methods中是接受不到的。
+        },
+    )
+
     new Vue({
         el: '#app',
         data:{
@@ -191,7 +211,9 @@
                     content: editor.querySelector('.editormd-markdown-textarea').value
                 }
 
-                console.log(data)
+                axios.post('/api/article/',data).then(res=>{
+                    console.log(res)
+                })
             },
 
             select_cover(val){
