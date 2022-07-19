@@ -21,7 +21,7 @@ class ArticleView(View):
         if not content:
             res['msg'] = '请输入文章内容'
             return JsonResponse(res)
-        extra = {
+        extra = {   # 前端必传值，放入extra中
             'title':title,
             'content':content,
             'recommend':recommend,
